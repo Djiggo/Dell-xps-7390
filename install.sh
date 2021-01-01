@@ -10,8 +10,10 @@ mkdir "dell_install"
 
 apt update
 echo 'Installing dependencies...'
-apt instal -y dkms
 
+curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+
+apt instal -y dkms git docker nodejs
 
 echo "Installing Google Chrome..."
 
@@ -31,5 +33,3 @@ tar -zxf idea.tar.gz -C /opt
 /opt/idea-IU-*/bin/idea.sh
 
 echo "Installing other packages..."
-
-apt instal -y git docker
