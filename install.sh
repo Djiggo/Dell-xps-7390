@@ -13,7 +13,7 @@ echo 'Installing dependencies...'
 
 curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 
-apt instal -y dkms git docker nodejs
+apt install -y dkms git docker nodejs
 
 echo "Installing Google Chrome..."
 
@@ -32,4 +32,14 @@ wget "https://download.jetbrains.com/product?code=IIU&latest&distribution=linux"
 tar -zxf idea.tar.gz -C /opt
 /opt/idea-IU-*/bin/idea.sh
 
-echo "Installing other packages..."
+echo "Checking sleep mode..."
+
+if ! grep "\[deep\]" /sys/power/mem_sleep; then
+  sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& mem_sleep_default=deep/' /etc/default/grub
+fi
+
+echo "Fix grub fonts..."
+
+grub-mkfont -s 32 -o /boot/grub/fonts/DejaVuSansMono.pf2 /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
+echo "GRUB_FONT=/boot/grub/fonts/DejaVuSansMono.pf2" >> /etc/default/grub
+update-grub
