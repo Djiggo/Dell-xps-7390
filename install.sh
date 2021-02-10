@@ -13,7 +13,7 @@ echo 'Installing dependencies...'
 
 curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 
-apt install -y dkms git docker nodejs
+apt install -y dkms git docker nodejs tlp
 
 echo "Installing Google Chrome..."
 
