@@ -11,6 +11,8 @@ mkdir "dell_install"
 apt update
 echo 'Installing dependencies...'
 
+apt install -y curl
+
 curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 
 apt install -y dkms git docker nodejs tlp
